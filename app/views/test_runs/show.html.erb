@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sysname:</b>
+  <%= @test_run.sysname %>
+</p>
+
+<p>
+  <b>Release:</b>
+  <%= @test_run.release %>
+</p>
+
+<p>
+  <b>Version:</b>
+  <%= @test_run.version %>
+</p>
+
+<p>
+  <b>Machine:</b>
+  <%= @test_run.machine %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @test_run.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_run_path(@test_run) %> |
+<%= link_to 'Back', test_runs_path %>

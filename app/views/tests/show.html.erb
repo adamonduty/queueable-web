@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @test.type %>
+</p>
+
+<p>
+  <b>Threads:</b>
+  <%= @test.threads %>
+</p>
+
+<p>
+  <b>Seconds:</b>
+  <%= @test.seconds %>
+</p>
+
+<p>
+  <b>Msg size:</b>
+  <%= @test.msg_size %>
+</p>
+
+<p>
+  <b>Test run:</b>
+  <%= @test.test_run %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %>
