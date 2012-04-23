@@ -1,6 +1,4 @@
-<h1>Editing test_run</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @test_run %> |
-<%= link_to 'Back', test_runs_path %>
+<%- model_class = @test_run.class -%>
+<h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                 :default => "Edit #{model_class.model_name.human}") %></h1>
+<%= render :partial => 'form' %>
