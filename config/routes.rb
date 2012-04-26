@@ -1,7 +1,9 @@
 Queueable::Application.routes.draw do
 
-  resources :test_runs do
-    resources :tests
+  resources :platforms do
+    resources :batches do
+      resources :runs
+    end
   end
 
   # The priority is based upon order of creation:

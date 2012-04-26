@@ -1,0 +1,27 @@
+<h1><%= @platform.sysname %> - <%= @platform.machine %></h2>
+<p><%= @platform.release %> <%= @platform.version %></p>
+
+<% model_class = Batch %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Submitted</th>
+      <th>Notes</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @platform.batches.each do |batch| %>
+      <tr>
+        <td><%=l batch.created_at %></td>
+        <td><%= batch.notes %></td>
+        <td>
+          <%= link_to 'View', platform_batch_path(@platform, batch), :class => 'btn btn-primary btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+            platforms_path, :class => 'btn'  %>

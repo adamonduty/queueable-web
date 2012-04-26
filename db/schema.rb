@@ -11,28 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423213145) do
+ActiveRecord::Schema.define(:version => 20120424012718) do
 
-  create_table "test_runs", :force => true do |t|
-    t.string   "sysname"
-    t.string   "release"
-    t.string   "version"
-    t.string   "machine"
+  create_table "batches", :force => true do |t|
     t.string   "notes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "tests", :force => true do |t|
-    t.string   "type"
-    t.integer  "threads"
-    t.decimal  "seconds"
-    t.integer  "msg_size"
-    t.integer  "test_run_id"
+    t.integer  "platform_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "tests", ["test_run_id"], :name => "index_tests_on_test_run_id"
+  add_index "batches", ["platform_id"], :name => "index_batches_on_platform_id"
+
+  create_table "platforms", :force => true do |t|
+    t.string   "sysname"
+    t.string   "release"
+    t.string   "version"
+    t.string   "machine"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "runs", :force => true do |t|
+    t.string   "backend"
+    t.integer  "threads"
+    t.decimal  "seconds"
+    t.integer  "msg_size"
+    t.integer  "batch_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "runs", ["batch_id"], :name => "index_runs_on_batch_id"
 
 end

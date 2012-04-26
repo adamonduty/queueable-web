@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sysname: MyString
+  release: MyString
+  version: MyString
+  machine: MyString
+
+two:
+  sysname: MyString
+  release: MyString
+  version: MyString
+  machine: MyString

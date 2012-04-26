@@ -1,0 +1,26 @@
+<%- model_class = Platform.new.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:sysname) %></th>
+      <th><%= model_class.human_attribute_name(:release) %></th>
+      <th><%= model_class.human_attribute_name(:version) %></th>
+      <th><%= model_class.human_attribute_name(:machine) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @platforms.each do |platform| %>
+      <tr>
+        <td><%= platform.sysname %></td>
+        <td><%= platform.release %></td>
+        <td><%= platform.version %></td>
+        <td><%= platform.machine %></td>
+        <td>
+          <%= link_to 'View', platform_path(platform), :class => 'btn btn-primary btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
