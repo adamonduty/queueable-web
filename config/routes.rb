@@ -1,5 +1,6 @@
 Queueable::Application.routes.draw do
 
+  root :to => 'welcome#index'
   resources :platforms do
     resources :batches do
       resources :runs

@@ -6,6 +6,12 @@ class Platform < ActiveRecord::Base
   accepts_nested_attributes_for :batches
   before_save :merge_duplicate
 
+  class << self
+    def systems
+      select(:sysname).uniq.pluck(:sysname)
+    end
+  end
+
   def merge_duplicate
     dup = self.class.where(:machine => machine).where(:release => release).
             where(:sysname => sysname).where(:version => version).
@@ -16,6 +22,14 @@ class Platform < ActiveRecord::Base
       @new_record = false
     end
     true
+  end
+
+  def name
+    "#{sysname} - #{machine}"
+  end
+
+  def details
+    "#{release} #{version}"
   end
 
 end

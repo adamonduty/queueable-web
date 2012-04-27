@@ -2,7 +2,11 @@ class PlatformsController < ApplicationController
   # GET /platforms
   # GET /platforms.json
   def index
-    @platforms = Platform.all
+    if params[:sysname]
+      @platforms = Platform.where(:sysname => params[:sysname])
+    else
+      @platforms = Platform.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

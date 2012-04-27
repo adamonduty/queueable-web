@@ -1,0 +1,16 @@
+<h1>Welcome</h1>
+<p>Queueable aims to measure the tolerance of various communication mechanisms to
+concurrent messaging. <%= link_to 'Browse the platforms', platforms_path %> or view recent submissions:</p>
+
+<ul>
+<% @recent.each do |batch| %>
+  <li>
+    <%= link_to "#{batch.platform.name} - #{batch.platform.release}", platform_batch_path(batch.platform, batch) %>
+    <ul>
+      <% batch.backends.each do |backend| %>
+      <li><%= backend %></li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>
