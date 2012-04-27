@@ -1,3 +1,14 @@
 <h1>Results for Batch</h1>
 
+<% options = {} %>
+<% options[:width] = 800 %>
+<% options[:height] = 600 %>
+<% options[:hAxis] = {:slantedText => true, :title => 'Message Size (log scale)'} %>
+<% options[:vAxis] = {:title => 'Seconds'} %>
+<% backends = list_backends(@batch) %>
 
+<% backends.each do |backend| %>
+  <div id='line_chart_<%= backends.index backend %>'></div>
+  <% options[:title] = backend %>
+  <%= render_chart line_chart(@batch.runs.where(:backend => backend), options), "line_chart_#{backends.index backend}" %>
+<% end %>
