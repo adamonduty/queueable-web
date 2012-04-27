@@ -1,5 +1,5 @@
 module BatchesHelper
-  def line_chart(runs, options)
+  def backend_line_chart(runs, options)
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column 'string', 'Size'
 
