@@ -1,5 +1,37 @@
 module BatchesHelper
-  def backend_line_chart(runs, options)
+  def backend_performance_chart(runs, options)
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column 'string', 'Size'
+
+    # get the backends
+    backends = runs.select(:backend).order('backend ASC').uniq.pluck(:backend)
+    backends.each do |backend|
+      data_table.new_column 'number', backend
+    end
+
+    # get number of message sizes
+    message_sizes = runs.select(:msg_size).order('msg_size ASC').uniq.pluck(:msg_size)
+
+    # build hash with [msg_size][backend] = seconds
+    results = {}
+    runs.each do |run|
+      results[run.msg_size] ||= {}
+      results[run.msg_size][run.backend] = run.seconds.to_f
+    end
+
+    # build data table
+    message_sizes.each do |msg_size|
+      row = [msg_size.to_s]
+      backends.each do |backend|
+        row << results[msg_size][backend]
+      end
+      data_table.add_row row
+    end
+
+    GoogleVisualr::Interactive::LineChart.new(data_table, options)
+  end
+
+  def backend_concurrency_chart(runs, options)
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column 'string', 'Size'
 

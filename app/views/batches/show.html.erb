@@ -1,5 +1,9 @@
 <h1>Results for <%= @batch.platform.sysname %> - <%= @batch.platform.machine %></h1>
 <p><%= @batch.platform.release %> <%= @batch.platform.version %></p>
+<p>Each test consists of a single server process performing one million message
+enqueues. One or more client processes then perform the equivalent of one million
+dequeues. This process is repeated varying both the message size and number of
+client processes.</p>
 
 <% options = {} %>
 <% options[:width] = 800 %>
@@ -8,8 +12,23 @@
 <% options[:vAxis] = {:title => 'Seconds'} %>
 <% backends = list_backends(@batch) %>
 
+<h3>Backend Performance</h3>
+<p>Each chart shows how the backend performs in relation to other backends.</p>
+<% @batch.threads.each do |thread| %>
+  <% options[:title] = "Backend Performance for #{thread}-thread" %>
+  <div id='performance_chart_<%= @batch.threads.index thread %>'></div>
+  <%= render_chart backend_performance_chart(@batch.runs.where(:threads => thread), options), "performance_chart_#{@batch.threads.index thread}" %>
+  <hr />
+<% end %>
+
+<h3>Backend Concurrency</h3>
+<p>Each chart shows how the backend performs as concurrency increases.</p>
 <% backends.each do |backend| %>
-  <div id='line_chart_<%= backends.index backend %>'></div>
   <% options[:title] = backend %>
-  <%= render_chart backend_line_chart(@batch.runs.where(:backend => backend), options), "line_chart_#{backends.index backend}" %>
+  <div id='concurrency_chart_<%= backends.index backend %>'></div>
+  <%= render_chart backend_concurrency_chart(@batch.runs.where(:backend => backend), options), "concurrency_chart_#{backends.index backend}" %>
+  <div>
+  <p class="pull-right"><%= link_to 'View Raw Data', platform_batch_runs_path(@platform, @batch, :anchor => backend.gsub(' ', '')) %></p>
+  </div>
+  <hr />
 <% end %>

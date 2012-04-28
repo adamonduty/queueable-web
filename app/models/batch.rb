@@ -15,4 +15,8 @@ class Batch < ActiveRecord::Base
   def backends
     runs.select(:backend).uniq.pluck(:backend)
   end
+
+  def threads
+    runs.select(:threads).uniq.pluck(:threads)
+  end
 end
