@@ -21,6 +21,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'google_visualr'
 
