@@ -5,7 +5,7 @@ concurrent messaging. <%= link_to 'Browse the platforms', platforms_path %> or v
 <ul>
 <% @recent.each do |batch| %>
   <li>
-    <%= link_to "#{batch.platform.name} - #{batch.platform.release}", platform_batch_path(batch.platform, batch) %>
+    <%= link_to "#{batch.platform.name} - #{batch.platform.release} - #{batch.processor}", platform_batch_path(batch.platform, batch) %>
     <ul>
       <% batch.backends.each do |backend| %>
       <li><%= backend %></li>
