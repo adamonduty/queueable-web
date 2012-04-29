@@ -5,10 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Submitted</th>
       <th>Host</th>
       <th>Processor</th>
       <th>Cores</th>
-      <th>Submitted</th>
       <th>Notes</th>
       <th></th>
     </tr>
@@ -16,10 +16,10 @@
   <tbody>
     <% @platform.batches.each do |batch| %>
       <tr>
+        <td><%=l batch.created_at %></td>
         <td><%= batch.host %></td>
         <td><%= batch.processor %></td>
         <td><%= batch.cores %></td>
-        <td><%=l batch.created_at %></td>
         <td><%= batch.notes %></td>
         <td>
           <%= link_to 'View', platform_batch_path(@platform, batch), :class => 'btn btn-primary btn-mini' %>
