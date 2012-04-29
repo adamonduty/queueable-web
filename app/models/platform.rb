@@ -1,6 +1,5 @@
 class Platform < ActiveRecord::Base
   has_many :batches
-  default_scope order('sysname ASC, release ASC')
   attr_accessible :machine, :release, :sysname, :version
   attr_accessible :batches_attributes
 

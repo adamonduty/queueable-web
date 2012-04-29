@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @batch.runs.where(:backend => backend).each do |run| %>
+      <% @batch.runs.where(:backend => backend).reorder('threads ASC, msg_size ASC').each do |run| %>
         <tr>
           <td><%= run.threads %></td>
           <td><%= run.msg_size %></td>
