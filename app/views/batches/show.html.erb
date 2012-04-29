@@ -1,5 +1,6 @@
 <h1>Results for <%= @batch.platform.sysname %> - <%= @batch.platform.machine %></h1>
 <p><%= @batch.platform.release %> <%= @batch.platform.version %></p>
+<p><%= batch_attributes(@batch).join("; ") %></p>
 <p>Each test consists of a single server process performing one million message
 enqueues. One or more client processes then perform the equivalent of one million
 dequeues. This process is repeated varying both the message size and number of

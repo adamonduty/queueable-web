@@ -5,6 +5,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Host</th>
+      <th>Processor</th>
+      <th>Cores</th>
       <th>Submitted</th>
       <th>Notes</th>
       <th></th>
@@ -13,6 +16,9 @@
   <tbody>
     <% @platform.batches.each do |batch| %>
       <tr>
+        <td><%= batch.host %></td>
+        <td><%= batch.processor %></td>
+        <td><%= batch.cores %></td>
         <td><%=l batch.created_at %></td>
         <td><%= batch.notes %></td>
         <td>

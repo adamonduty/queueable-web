@@ -1,7 +1,7 @@
 class Batch < ActiveRecord::Base
   has_many :runs
   belongs_to :platform
-  attr_accessible :notes, :uhash
+  attr_accessible :notes, :uhash, :host, :cores, :processor
   attr_accessible :runs_attributes
 
   accepts_nested_attributes_for :runs

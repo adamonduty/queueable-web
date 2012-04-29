@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428012457) do
+ActiveRecord::Schema.define(:version => 20120429000046) do
 
   create_table "batches", :force => true do |t|
     t.string   "notes"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20120428012457) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "uhash"
+    t.string   "host"
+    t.string   "processor"
+    t.integer  "cores"
   end
 
   add_index "batches", ["platform_id"], :name => "index_batches_on_platform_id"

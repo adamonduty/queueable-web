@@ -66,4 +66,13 @@ module BatchesHelper
   def list_backends(batch)
     batch.runs.select(:backend).uniq.pluck(:backend)
   end
+
+  def batch_attributes(batch)
+    methods = [:host, :processor, :cores, :notes]
+    attributes = []
+    methods.each do |method|
+      attributes << "#{method.capitalize}" + ": #{batch.send(method)}" if batch.send(method)
+    end
+    attributes.compact
+  end
 end
