@@ -8,7 +8,7 @@ class Batch < ActiveRecord::Base
 
   class << self
     def recent
-      order('created_at DESC').limit(5)
+      order('created_at DESC').limit(20)
     end
   end
 
