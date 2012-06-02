@@ -1,0 +1,43 @@
+<%= form_for [@batch.platform, @batch], :html => { :class => 'form-horizontal' } do |f| %>
+  <p>Queueable attempts to gather no sensitive data about your system (such as hostname) during automatic submission.
+  Please provide any additional details you wish, particularly the number of CPU cores and the processor.</p>
+
+  <div class="control-group">
+    <%= f.label :host, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :host, :class => 'text_field' %>
+      <p class="help-block">Hostname or system name to help others identify the batch. For example, <strong>myhost.myuniversity.edu</strong>, <strong>Macbook Air</strong>, or <strong>Dell Latitude E6400</strong>.</p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :processor, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :processor, :class => 'text_field' %>
+      <p class="help-block">A detailed description of the processor such as the CPU model name given in Linux by <i>/proc/cpuinfo</i>.</p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :cores, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :cores, :class => 'number_field' %>
+      <p class="help-block">Number of concurrently executing cores, even if hyperthreaded. For example, the number of cores reported in Linux by <i>/proc/cpuinfo</i></p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :notes, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :notes, :class => 'input-xlarge', :rows => 3 %>
+      <p class="help-block">Any other system-specific notes. For example, if supported by your system, you may want to run one test with hyperthreading enabled and another without hyperthreading.</p>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <input type="hidden" id="uhash" name="uhash" value="<%= params[:uhash] %>" />
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                platform_batches_path, :class => 'btn' %>
+  </div>
+<% end %>

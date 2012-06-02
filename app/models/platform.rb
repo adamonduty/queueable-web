@@ -2,6 +2,10 @@ class Platform < ActiveRecord::Base
   has_many :batches
   attr_accessible :machine, :release, :sysname, :version
   attr_accessible :batches_attributes
+  validates :machine, :presence => true
+  validates :release, :presence => true
+  validates :sysname, :presence => true
+  validates :version, :presence => true
 
   accepts_nested_attributes_for :batches
   before_save :merge_duplicate

@@ -1,0 +1,14 @@
+=====================================================================
+<% if @success and @uhash %>
+<% url = edit_platform_batch_url(@platform, @platform.batches.where(:uhash => @uhash).first, :uhash => @uhash) %>
+Thanks for your contribution!
+Please visit <%= url %> to add details about your host.
+<% else %>
+Sorry, but your submission didn't work out:
+  <% @platform.errors.each do |attribute, error| %>
+    - <%= attribute %>: <%= error %>
+  <% end %>
+
+Please fix the issues and try again. You may just want to re-run the queueable test suite.
+<% end %>
+=====================================================================

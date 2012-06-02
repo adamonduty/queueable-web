@@ -5,6 +5,8 @@ class Batch < ActiveRecord::Base
   attr_accessible :notes, :uhash, :host, :cores, :processor
   attr_accessible :runs_attributes
 
+  validates :uhash, :uniqueness => true
+
   accepts_nested_attributes_for :runs
 
   class << self
@@ -19,5 +21,17 @@ class Batch < ActiveRecord::Base
 
   def threads
     runs.select(:threads).uniq.pluck(:threads)
+  end
+
+  def to_xml(options = {})
+    options[:except] ||= []
+    options[:except] << :uhash
+    super(options)
+  end
+
+  def to_json(options = {})
+    options[:except] ||= []
+    options[:except] << :uhash
+    super(options)
   end
 end

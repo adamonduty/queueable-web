@@ -1,6 +1,14 @@
 class PlatformsController < InheritedResources::Base
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :text
   actions :index, :show, :create
+
+  def create
+    @uhash = params[:platform][:batches_attributes][0][:uhash] rescue nil
+    create! do |success, failure|
+      success.text { @success = true }
+      failure.text { @success = false }
+    end
+  end
 
 protected
 
