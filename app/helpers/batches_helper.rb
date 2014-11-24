@@ -64,7 +64,7 @@ module BatchesHelper
   end
 
   def list_backends(batch)
-    batch.runs.select(:backend).uniq.pluck(:backend)
+    batch.runs.select(:backend).uniq.pluck(:backend).sort
   end
 
   def batch_attributes(batch)

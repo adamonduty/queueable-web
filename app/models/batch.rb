@@ -20,7 +20,7 @@ class Batch < ActiveRecord::Base
   end
 
   def threads
-    runs.select(:threads).uniq.pluck(:threads)
+    runs.select(:threads).uniq.pluck(:threads).sort
   end
 
   def to_xml(options = {})
