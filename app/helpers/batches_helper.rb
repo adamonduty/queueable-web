@@ -16,7 +16,7 @@ module BatchesHelper
     results = {}
     runs.each do |run|
       results[run.msg_size] ||= {}
-      results[run.msg_size][run.backend] = run.seconds.to_f
+      results[run.msg_size][run.backend] = (1_000_000.to_f / run.seconds.to_f).round
     end
 
     # build data table
@@ -48,7 +48,7 @@ module BatchesHelper
     results = {}
     runs.each do |run|
       results[run.msg_size] ||= {}
-      results[run.msg_size][run.threads] = run.seconds.to_f
+      results[run.msg_size][run.threads] = (1_000_000.to_f / run.seconds.to_f).round
     end
 
     # build data table
